@@ -1,5 +1,5 @@
 "use client";
-import { Briefcase, ChevronDown, ChevronUp, LayoutDashboard, LockIcon, Settings, Users, X } from "lucide-react";
+import { AlertCircle, AlertOctagon, AlertTriangle, BookOpenCheck, Briefcase, ChevronDown, ChevronUp, Layers3, LayoutDashboard, LockIcon, Settings, ShieldAlert, Users, X } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { SidebarLink } from "./SidebarLink";
@@ -11,7 +11,6 @@ const Sidebar = () =>{
 
     const [showProjects,setShowProjects] = useState<boolean>(true);
     const [showPriority,setShowPriority] = useState<boolean>(true);
-    const [showModules,setShowModules] = useState<boolean>(true);
 
     const dispatch = useAppDispatch();
     const isSidebarCollapsed = useAppSelector((state)=> state.global.isSidebarCollapsed);
@@ -26,7 +25,7 @@ const Sidebar = () =>{
                 {/* TOP LOGO */}
                 <div className="z-50 flex min-h-[56px] w-64 items-center justify-between bg-white px-6 pt-3 dark:bg-black">
                     <div className="text-xl font-bold text-gray-800 dark:text-white">
-                        Primesys
+                        {process.env?.NEXT_PUBLIC_COMPANY_NAME}
                     </div>
                     {
                         isSidebarCollapsed ?  null : (
@@ -42,7 +41,7 @@ const Sidebar = () =>{
                     <Image src={'/logo.png'} alt="Logo" width={40} height={40} />
                     <div>
                         <h3 className="text-sm font-bold uppercase tracking-wide dark:text-gray-200">
-                            primesys team
+                            {process.env?.NEXT_PUBLIC_COMPANY_TEAM_NAME}
                         </h3>
                         <div className="mt-1 flex items-center gap-2">
                             <LockIcon className="mt-[0.1rem] h-3 w-3 text-gray-500 dark:text-gray-400" />
@@ -55,17 +54,20 @@ const Sidebar = () =>{
                 <nav className="z-10 w-full">
                     <SidebarLink icon={LayoutDashboard} label="Dashboard" href="/" />
                     <SidebarLink icon={Users} label="Teams" href="/teams" />
+                    <SidebarLink icon={BookOpenCheck} label="Task" href="/tasks" />
                     <SidebarLink icon={Briefcase} label="Teams" href="/timeline" />
                     <SidebarLink icon={Settings} label="Settings" href="/settings" />
                 </nav>
 
-                <button onClick={() => setShowModules((prev)=> !prev)}
-                    className="flex w-full items-center justify-between px-8 py-3 text-gray-500">
+
+                {/*  Projects */}
+                <button onClick={() => setShowProjects((prev)=> !prev)}
+                    className="flex w-full items-center justify-between px-8 py-3 text-gray-700 dark:text-white">
                         <span className="">
-                            Modules
+                            Projects
                         </span>
                         {
-                            !showModules ? (
+                            !showProjects ? (
                                 <ChevronUp className="h-5 w-5" />
                             ):
                             (
@@ -73,6 +75,35 @@ const Sidebar = () =>{
                             )
                         }
                 </button>
+
+                {/* Priority */}
+                <button onClick={()=> setShowPriority((prev)=> !prev)}
+                    className="flex w-full items-center justify-between px-8 py-3 text-gray-800 dark:text-white">
+                        <span>
+                            Priority
+                        </span>
+                        {
+                            !showPriority ? (
+                                <ChevronUp className="h-5 w-5" />
+                            ):
+                            (
+                                <ChevronDown className="h-5 w-5" />
+                            )
+                        }
+                </button>
+                
+                {
+                    showPriority && (
+                        <>
+                            <SidebarLink icon={AlertCircle} label="Urgent" href="/priority/urgent" />
+                            <SidebarLink icon={ShieldAlert} label="High" href="/priority/high" />
+                            <SidebarLink icon={AlertTriangle} label="Medium" href="/priority/medium" />
+                            <SidebarLink icon={AlertOctagon} label="Low" href="/priority/low" />
+                            <SidebarLink icon={Layers3} label="Low" href="/priority/backlog" />
+                        </>
+                    )
+                }
+
             </div>
         </div>
     )
