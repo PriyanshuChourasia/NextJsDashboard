@@ -31,11 +31,18 @@ const config: Config = {
         "dark-secondary":"#1d1f21",
         "dark-tertiary":"#3b3d40",
         "blue-primary":"#0275ff",
-        "stroke-dark":"#2d3135"
+        "stroke-dark":"#2d3135",
+        "light-bg":"#DBDBDB"
       },
       backgroundImage:{
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))"
+      },
+      screens:{
+        sm: {min: '300px',max:'640px'},
+        md: {min: '641px',max:'768px'},
+        lg: {min: '769px',max:'1024px'},
+        xl: {min: '1025px'},
       }
     },
     keyframes: {

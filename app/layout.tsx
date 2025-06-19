@@ -1,6 +1,15 @@
 import "@/app/ui/global.css";
 import {inter} from "@/app/ui/fonts";
 import StoreProvider from "./redux/StoreProvider";
+import type { Metadata } from "next";
+import QueryProvider from "./lib/QueryProvider";
+import {Toaster} from "react-hot-toast";
+
+
+export const metadata: Metadata = {
+  title:"WishAlpha",
+  description:"....."
+}
 
 export default function RootLayout({
   children,
@@ -10,9 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <StoreProvider>
-          {children}
-        </StoreProvider>
+        <QueryProvider>
+          <StoreProvider>
+            <Toaster/>
+            {children}
+          </StoreProvider>
+        </QueryProvider>
       </body>
     </html>
   );
