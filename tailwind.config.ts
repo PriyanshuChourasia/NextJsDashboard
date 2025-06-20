@@ -42,7 +42,8 @@ const config: Config = {
         sm: {min: '300px',max:'640px'},
         md: {min: '641px',max:'768px'},
         lg: {min: '769px',max:'1024px'},
-        xl: {min: '1025px'},
+        xl: {min: '1025px',max:'1380px'},
+        '2xl':{min:"1381px"}
       }
     },
     keyframes: {

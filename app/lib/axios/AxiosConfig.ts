@@ -1,13 +1,15 @@
 import axios from "axios";
-const authToken = "authToken";
+const authToken = "access_token";
+import Cookie from "js-cookie";
 
 const axiosAdminApi = axios.create({
-  baseURL: `${process.env.NEXT_ADMIN_API_URL}`,
+  baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}`,
 });
 
 axiosAdminApi.interceptors.request.use(
   (config) => {
-    let localToken = localStorage.getItem(authToken) || "";
+    let localToken = Cookie.get(authToken) || "";
+    console.log("Cookies token",localToken);
     let token = `Bearer ${JSON.parse(localToken)}`;
     if (localToken) {
       config.headers["Authorization"] = token;

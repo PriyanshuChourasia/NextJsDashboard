@@ -2,6 +2,7 @@
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import { LoginFormValidation } from "./hooks/FormValidation";
 import useLoginMutation from "./hooks/useLogin";
+import Link from "next/link";
 
 
 
@@ -72,14 +73,14 @@ const LoginForm = () =>{
                         </div>
                     </div>
                     <div className="w-full mt-8">
-                        <button type="submit" className="w-full rounded-lg bg-dark-bg text-white text-[14px] py-3">
+                        <button type="submit" className="w-full rounded-lg bg-dark-bg dark:bg-blue-primary text-white text-[14px] py-3">
                             {isPending ? "Signing....." : "Sign In"}
                         </button>
                     </div>
 
                     {/* Sign up link */}
                     <div className="mt-16">
-                        <span className="text-gray-600">Don't have an account?<span className="text-purple-600 font-bold">{" "}Sign Up</span></span>
+                        <Link href={"/signup"} className="text-gray-600 dark:text-gray-400">Don't have an account?<span className="text-purple-600 dark:text-purple-400 cursor-pointer font-bold">{" "}Sign Up</span></Link>
                     </div>
                   </Form>  
                 )}
