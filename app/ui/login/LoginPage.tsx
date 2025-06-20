@@ -20,8 +20,8 @@ const LoginPage = () => {
 
 
     return(
-        <div className="bg-white grid dark:bg-black dark:border-white dark:border-[1px] grid-cols-2 w-3/6 shadow-md shadow-gray-400">
-            <div className="w-auto py-24 px-12">
+        <div className="bg-white sm:flex sm:w-5/6 xl:grid lg:w-5/6 xl:w-4/6 dark:bg-black dark:border-white dark:border-[1px] lg:grid lg:grid-cols-2 xl:grid-cols-2 2xl:grid 2xl:grid-cols-2 w-3/6 shadow-md shadow-gray-400">
+            <div className="w-auto md:w-full py-24 px-12">
                 <div className="pb-12">
                     {/* <Image src={'/logo.jpeg'} alt="Logo" width={20} height={20} className="bg-transparent"/>     */}
                     <h1 className="text-xs dark:text-white">{process.env.NEXT_PUBLIC_COMPANY_NAME}</h1>
@@ -33,7 +33,7 @@ const LoginPage = () => {
                 </div>
                 <LoginForm/>
             </div>
-            <div className="h-full w-full relative">
+            <div className="h-full w-full sm:hidden md:hidden relative">
                 <Image src={'/task1.jpg'} alt="Task Image" fill  className="object-cover"/>
             </div>
         </div>

@@ -3,11 +3,15 @@ import { loginUser } from "../services/api";
 import { ILoginRequestInterface } from "../interfaces/LoginRequestInterface";
 import Cookie from "js-cookie";
 import {toast} from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 
 
 
 export default function useLoginMutation(){
+
+    const router = useRouter();
+
     return useMutation({
         mutationKey:["login-user"],
         mutationFn: (request:ILoginRequestInterface)=>{
@@ -17,6 +21,8 @@ export default function useLoginMutation(){
         onSuccess:(data)=>{
             console.log("success: ",data);
             const token = data.data.data.access_token;
+
+            // If token is valid
             if(token){
                 console.log(token);
                 Cookie.set("access_token",token,{
@@ -37,7 +43,12 @@ export default function useLoginMutation(){
                     duration:3000,
                     className:"text-base"
                 });
-            }else{
+
+                router.push("/dashboard")
+            }
+            // If logged in but didn't got the token
+            else
+            {
                 toast.success('Logged Successfull! Token not received',{
                     position:"top-center",
                     duration:3000,

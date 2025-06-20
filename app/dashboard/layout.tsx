@@ -4,8 +4,9 @@ import { useAppSelector } from "../redux";
 import Navbar from "../ui/dashboard/navbar";
 import Sidebar from "../ui/dashboard/sidebar";
 
+
 export default function Layout({children}:{children: React.ReactNode}){
-      const isSidebarCollapsed = useAppSelector((state)=> state.global.isSidebarCollapsed);
+    const isSidebarCollapsed = useAppSelector((state)=> state.global.isSidebarCollapsed);
     const isDarkMode = useAppSelector((state)=> state.global.isDarkMode);
 
     useEffect(()=>{

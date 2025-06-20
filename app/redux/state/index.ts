@@ -29,5 +29,5 @@ export const globalSlice = createSlice({
     }
 });
 
-export const {setIsSidebarCollapsed,setIsDarkMode} = globalSlice.actions;
+export const {setIsSidebarCollapsed,setIsDarkMode,setIsAuthenticated} = globalSlice.actions;
 export default globalSlice.reducer;

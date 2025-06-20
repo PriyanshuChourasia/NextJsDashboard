@@ -1,14 +1,31 @@
+"use client";
 import React from "react";
-import {Menu, Moon, Search, Settings, Sun} from "lucide-react";
+import {LogOut, Menu, Moon, Search, Settings, Sun} from "lucide-react";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/app/redux";
-import { setIsDarkMode, setIsSidebarCollapsed } from "@/app/redux/state";
+import { setIsAuthenticated, setIsDarkMode, setIsSidebarCollapsed } from "@/app/redux/state";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const Navbar = () =>{
 
     const dispatch = useAppDispatch();
     const isSidebarCollapsed = useAppSelector((state)=> state.global.isSidebarCollapsed);
     const isDarkMode = useAppSelector((state)=> state.global.isDarkMode);
+    const router = useRouter();
+
+    const logout = () =>{
+        const accessToken = Cookies.get("access_token");
+        if(accessToken){
+            Cookies.remove("access_token");
+            Cookies.remove("refresh_token");
+        }else{
+            Cookies.remove("access_token");
+            Cookies.remove("refresh_token");
+        }
+        dispatch(setIsAuthenticated(false));
+        router.push("/login");
+    }
 
     return(
         <nav className="flex items-center justify-between bg-white px-4 py-3 dark:bg-black">
@@ -29,7 +46,7 @@ const Navbar = () =>{
             </div>
 
             {/* Icons */}
-            <div className="flex items-center">
+            <div className="flex items-center gap-3">
                 <button onClick={()=> dispatch(setIsDarkMode(!isDarkMode))} 
                     className={`${isDarkMode ? `rounded p-2 dark:hover:bg-gray-700` : `rounded p-2 hover:bg-gray-100`}`}>
                         {isDarkMode ? (
@@ -38,7 +55,12 @@ const Navbar = () =>{
                             <Moon className="h-6 w-6 cursor-pointer dark:text-white" />
                         )}
                 </button>
-                <Link href={"/settings"}
+                
+                <button onClick={()=> logout()} className="rounded-lg">
+                    <LogOut className="dark:text-white rounded-full"/>
+                </button>
+
+                <Link href={"/dashboard/settings"}
                 className={`${
                     isDarkMode ? "h-min w-min rounded p-2 dark:hover:bg-gray-700": "h-min w-min rounded p-2 hover:bg-gray-100"}`}
                 >

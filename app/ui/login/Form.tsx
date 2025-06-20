@@ -69,7 +69,7 @@ const LoginForm = () =>{
                             </label>
                         </div>
                         <div>
-                            <span className="font-semibold">Forgot Password?</span>
+                            <Link href={"/forgot-password"} className="font-semibold">Forgot Password?</Link>
                         </div>
                     </div>
                     <div className="w-full mt-8">
