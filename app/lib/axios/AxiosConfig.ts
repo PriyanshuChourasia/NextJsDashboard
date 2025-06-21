@@ -1,9 +1,10 @@
 import axios from "axios";
 const authToken = "access_token";
 import Cookie from "js-cookie";
+import { API_URL } from "../utils/env";
 
 const axiosAdminApi = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}`,
+  baseURL: `${API_URL}`,
 });
 
 axiosAdminApi.interceptors.request.use(

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { SidebarLink } from "./SidebarLink";
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsSidebarCollapsed } from "@/app/redux/state";
+import { COMPANY_NAME, COMPANY_TEAM_NAME } from "@/app/lib/utils/env";
 
 
 const Sidebar = () =>{
@@ -25,7 +26,7 @@ const Sidebar = () =>{
                 {/* TOP LOGO */}
                 <div className="z-50 flex min-h-[56px] w-64 items-center justify-between bg-white px-6 pt-3 dark:bg-black">
                     <div className="text-xl font-bold text-gray-800 dark:text-white">
-                        {process.env?.NEXT_PUBLIC_COMPANY_NAME}
+                        {COMPANY_NAME}
                     </div>
                     {
                         isSidebarCollapsed ?  null : (
@@ -41,7 +42,7 @@ const Sidebar = () =>{
                     {/* <Image src={'/logo.png'} alt="Logo" width={40} height={40} /> */}
                     <div>
                         <h3 className="text-sm font-bold uppercase tracking-wide dark:text-gray-200">
-                            {process.env?.NEXT_PUBLIC_COMPANY_TEAM_NAME}
+                            {COMPANY_TEAM_NAME}
                         </h3>
                         <div className="mt-1 flex items-center gap-2">
                             <LockIcon className="mt-[0.1rem] h-3 w-3 text-gray-500 dark:text-gray-400" />

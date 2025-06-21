@@ -1,5 +1,6 @@
 import Image from "next/image";
 import SignUpForm from "./components/SignUpForm";
+import { COMPANY_NAME } from "@/app/lib/utils/env";
 
 
 
@@ -9,7 +10,7 @@ export default function SignUpPage(){
         <div className="md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 xl:grid xl:grid-cols-2 2xl:grid 2xl:grid-cols-2 w-full h-full">
             <div className="h-full w-full pt-28 px-12">
                 <div className="pb-12">
-                    <h1 className="text-2xl font-bold">{process.env.NEXT_PUBLIC_COMPANY_NAME}</h1>
+                    <h1 className="text-2xl font-bold">{COMPANY_NAME}</h1>
                 </div>
                 <div className="text-center">
                     <h2 className="text-3xl font-medium">Create your account</h2>
