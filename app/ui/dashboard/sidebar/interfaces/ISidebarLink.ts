@@ -1,7 +1,8 @@
 import { LucideIcon } from "lucide-react";
 
 export interface ISidebarLinkProps{
+    id?:number;
     href: string;
-    icon: LucideIcon;
+    icon: React.ReactNode;
     label: string;
 }

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useAppSelector } from "../redux";
 import Navbar from "../ui/dashboard/navbar";
 import Sidebar from "../ui/dashboard/sidebar";
-
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 
 
 export default function ClientLayout({children}:{children:React.ReactNode}){
@@ -22,12 +22,13 @@ export default function ClientLayout({children}:{children:React.ReactNode}){
     return(
         <div className="flex min-h-screen w-full bg-gray-50 text-gray-900">
             {/* Sidebar */}
-            <Sidebar/>
+            {/* <Sidebar/> */}
             <main className={`flex w-full flex-col bg-gray-50 dark:bg-dark-bg ${ isSidebarCollapsed ? "" : "md:pl-64"}`}>
                 {/* navbar */}
                 <Navbar/>
                 <div className="pl-4 pr-6">{children}</div>
             </main>
+
         </div>
     )
 }

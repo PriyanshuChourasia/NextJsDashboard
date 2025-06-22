@@ -4,6 +4,7 @@ import StoreProvider from "./redux/StoreProvider";
 import type { Metadata } from "next";
 import QueryProvider from "./lib/QueryProvider";
 import {Toaster} from "react-hot-toast";
+import { ThemeProvider } from "./lib/themeProvider";
 
 
 export const metadata: Metadata = {
@@ -19,12 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <QueryProvider>
-          <StoreProvider>
-            <Toaster/>
-            {children}
-          </StoreProvider>
-        </QueryProvider>
+          <QueryProvider>
+              <StoreProvider>
+                <Toaster/>
+                {children}
+              </StoreProvider>
+          </QueryProvider>
       </body>
     </html>
   );
